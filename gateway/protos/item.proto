@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package item;
+
+message Item {
+  uint64 id = 1;
+  string name = 2;
+  bool is_simple = 3;
+  int32 sample_int = 4;
+  uint64 user_id = 5;
+}
+
+
+message CreateItemRequest {
+  string name = 1;
+  bool is_simple = 2;
+  int32 sample_int = 3;
+  uint64 user_id = 4;
+}
+
+message CreateItemResponse {
+  Item item = 1;
+}
+
+message ListItemsRequest {
+  uint64 user_id = 1;
+}
+
+message ListItemsResponse {
+  repeated Item items = 1;
+}
+
+message GetItemRequest {
+  uint64 id = 1;
+  uint64 user_id = 2;
+}
+
+message GetItemResponse {
+  Item item = 1;
+}
+
+message UpdateItemRequest {
+  uint64 id = 1;
+  string name = 2;
+  bool is_simple = 3;
+  int32 sample_int = 4;
+  uint64 user_id = 5;
+}
+
+message UpdateItemResponse {
+  Item item = 1;
+}
+
+message DeleteItemRequest {
+  uint64 id = 1;
+  uint64 user_id = 2;
+}
+
+message DeleteItemResponse {
+  string success = 1;
+}
+
+service ItemService {
+  rpc Create(CreateItemRequest) returns (CreateItemResponse);
+  rpc List(ListItemsRequest) returns (ListItemsResponse);
+  rpc Get(GetItemRequest) returns (GetItemResponse);
+  rpc Update(UpdateItemRequest) returns (UpdateItemResponse);
+  rpc Delete(DeleteItemRequest) returns (DeleteItemResponse);
+}

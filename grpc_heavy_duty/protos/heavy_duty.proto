@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package heavy_duty;
+
+message User {
+  uint64 id = 1;
+  string username = 2;
+}
+
+
+message HeavyDutyRequest {
+  User user = 1;
+}
+
+message HeavyDutyResponse {
+  string message = 1;
+}
+
+service HeavyDutyService {
+  rpc HeavyDuty(HeavyDutyRequest) returns (HeavyDutyResponse);
+}

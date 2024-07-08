@@ -1,0 +1,11 @@
+grpcio
+grpcio-tools
+uvicorn
+fastapi
+piccolo[sqlite]
+pydantic-settings
+protobuf
+gunicorn
+cryptography
+passlib
+PyJWT
