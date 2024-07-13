@@ -1,7 +1,7 @@
 Mini demo example of microservice architecture using gRPC.
 
 Schema:
-<img src="./shema.png" width="100%"/>
+<img src="./schema.png" width="100%"/>
 
 This example can possibly be run using Docker:
 - clone the repository to your local machine;
