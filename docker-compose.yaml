@@ -9,26 +9,26 @@ services:
     env_file:
       - example.env
     container_name: gateway
-    command: [ "/gateway/starter.sh" ]
+    command: [ "bash", "-c","/gateway/starter/starter.sh" ]
     ports:
       - "8081:8080"
     restart: on-failure
     depends_on:
-      - grpc_item
-      - grpc_auth
+      - grpc-item
+      - grpc-auth
     volumes:
       - ./gateway/:/gateway/
     networks:
       - net
 
 
-  grpc_item:
+  grpc-item:
     build:
       context: ./
       dockerfile: grpc_item/Dockerfile
     env_file:
       - example.env
-    container_name: grpc_item
+    container_name: grpc-item
     ports:
       - "50051:50051"
     restart: on-failure
@@ -37,13 +37,13 @@ services:
     networks:
       - net
 
-  grpc_auth:
+  grpc-auth:
     build:
       context: ./
       dockerfile: grpc_auth/Dockerfile
     env_file:
       - example.env
-    container_name: grpc_auth
+    container_name: grpc-auth
     ports:
       - "50052:50052"
     restart: on-failure
@@ -53,13 +53,13 @@ services:
       - net
 
 
-  grpc_heavy_duty:
+  grpc-heavy-duty:
     build:
       context: ./
       dockerfile: grpc_heavy_duty/Dockerfile
     env_file:
       - example.env
-    container_name: grpc_heavy_duty
+    container_name: grpc-heavy-dutydock
     ports:
       - "50053:50053"
     restart: on-failure

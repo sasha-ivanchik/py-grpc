@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: example-env
+data:
+  ITEM_GRPC_ADDRESS: "0.0.0.0:50051"
+  ITEM_GRPC_IN_DOCKER_URL: "grpc-item:50051"
+  AUTH_GRPC_ADDRESS: "0.0.0.0:50052"
+  AUTH_GRPC_IN_DOCKER_URL: "grpc-auth:50052"
+  ALGORITHM: "HS256"
+  TOKEN_ENCRYPTION_SECRET: "some_string"
+  TOKEN_ENCRYPTION_SALT: "some_salt_string"
+  ACCESS_TOKEN_EXPIRE_SEC: "120000"
+  HEAVY_DUTY_GRPC_ADDRESS: "0.0.0.0:50053"
+  HEAVY_DUTY_GRPC_IN_DOCKER_URL: "grpc-heavy-duty:50053"

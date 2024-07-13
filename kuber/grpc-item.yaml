@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-item
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grpc-item
+  template:
+    metadata:
+      labels:
+        app: grpc-item
+    spec:
+      containers:
+      - name: grpc-item
+        image: alexivanchyk/grpc-item:v1
+        ports:
+        - containerPort: 50051
+        envFrom:
+        - configMapRef:
+            name: example-env
+#        volumeMounts:
+#        - name: grpc-item-volume
+#          mountPath: /grpc_item
+#      volumes:
+#      - name: grpc-item-volume
+#        hostPath:
+#          path: /Users/alexivanchyk/py-grpc/py-grpc/grpc_item
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grpc-item
+spec:
+  selector:
+    app: grpc-item
+  ports:
+  - protocol: TCP
+    port: 50051
+    targetPort: 50051

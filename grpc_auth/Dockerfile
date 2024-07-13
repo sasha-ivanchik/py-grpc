@@ -11,4 +11,4 @@ RUN apt-get update
 RUN pip install --no-cache-dir -r requirements.txt
 COPY ./grpc_auth/ /grpc_auth
 
-CMD ["python","starter.py"]
+CMD ["python3","starter.py"]

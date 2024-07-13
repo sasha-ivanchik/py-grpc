@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-heavy-duty
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grpc-heavy-duty
+  template:
+    metadata:
+      labels:
+        app: grpc-heavy-duty
+    spec:
+      containers:
+      - name: grpc-heavy-duty
+        image: alexivanchyk/grpc-heavy-duty:v1
+        ports:
+        - containerPort: 50053
+        envFrom:
+        - configMapRef:
+            name: example-env
+#        volumeMounts:
+#        - name: grpc-heavy-duty-volume
+#          mountPath: /grpc_heavy_duty
+#      volumes:
+#      - name: grpc-heavy-duty-volume
+#        hostPath:
+#          path: /Users/alexivanchyk/py-grpc/py-grpc/grpc_heavy_duty
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grpc-heavy-duty
+spec:
+  selector:
+    app: grpc-heavy-duty
+  ports:
+  - protocol: TCP
+    port: 50053
+    targetPort: 50053

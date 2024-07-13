@@ -11,4 +11,4 @@ RUN apt-get update
 RUN pip install --no-cache-dir -r requirements.txt
 COPY ./gateway/ /gateway
 
-RUN chmod +x /gateway/starter.sh
+RUN chmod +x /gateway/starter/starter.sh

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grpc-auth
+  template:
+    metadata:
+      labels:
+        app: grpc-auth
+    spec:
+      containers:
+      - name: grpc-auth
+        image: alexivanchyk/grpc-auth:v1
+        ports:
+        - containerPort: 50052
+        envFrom:
+        - configMapRef:
+            name: example-env
+#        volumeMounts:
+#        - name: grpc-auth-volume
+#          mountPath: /grpc_auth
+#      volumes:
+#      - name: grpc-auth-volume
+#        hostPath:
+#          path: /Users/alexivanchyk/py-grpc/py-grpc/grpc_auth
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grpc-auth
+spec:
+  selector:
+    app: grpc-auth
+  ports:
+  - protocol: TCP
+    port: 50052
+    targetPort: 50052
